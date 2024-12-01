@@ -1,0 +1,10 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  padding: 2rem;
+  background-color: #ececf9;
+  margin: 0;
+}
