@@ -3,10 +3,12 @@ import { Typography, Box } from "@mui/material"
 export const MainTitle = () => {
     return (
         <Box
-            sx={{ color: '#2d2d86', alignItems:'center', textAlign: 'center'}}
+            sx={{ color: '#b30059', alignItems:'center', textAlign: 'center'}}
         >
             <Typography variant='h1'>ComMEWnicate</Typography>
-            <Typography variant='h4'>become sigma by talkmaxxing.</Typography>
+            <Typography variant='h4'>become sigma by talkmaxxing</Typography>
+            <Typography variant='subtitle1' gutterBottom>practice rizzing people up via AI chats</Typography>
+
             <Box
                     component='img'
                     sx={{
@@ -15,9 +17,8 @@ export const MainTitle = () => {
                         objectFit: 'contain',
                     }}
                     alt="Get mogged by a kitty."
-                    src='interviewing.png'
+                    src='main.png'
             />
-            <Typography variant='subtitle1' gutterBottom>a platform where you can practice rizzing people up.</Typography>
         </Box>
     )
 }

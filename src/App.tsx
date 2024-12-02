@@ -6,6 +6,7 @@ import { ThemeProvider } from '@emotion/react';
 import { CallCard } from './components/CallCard';
 import { callUser } from './functions/outboundCalls';
 import { ArrowCircleLeft, ArrowCircleRight } from '@mui/icons-material';
+import { CallAnalysis} from './components/CallAnalysis';
 
 
 
@@ -16,18 +17,18 @@ const theme = createTheme({
   palette: {
     mode: 'light', // 'light' or 'dark' mode
     primary: {
-      main: '#b3b3e6', // Your specified light green color
-      light: '#c6c6ec', // Same as main since you want this as the light color
-      dark: '#9f9fdf', // Dark green
-      contrastText: '#2d2d86', // White text to contrast primary colors
+      main: '#ffb3d9', // Your specified light green color
+      light: '#ffcce6', // Same as main since you want this as the light color
+      dark: '#ff99cc', // Dark green
+contrastText: '#b30059', // White text to contrast primary colors
     },
     background: {
       default: '#ffffff', // White background for the app
-      paper: '#2d2d86', // Dark gray background for paper elements
+      paper: '#b30059', // Dark gray background for paper elements
     },
     text: {
-      primary: '#2d2d86', // Black text for primary content
-      secondary: '#2d2d86', // Gray text for secondary content
+      primary: '#b30059', // Black text for primary content
+      secondary: '#b30059', // Gray text for secondary content
     },
     error: {
       main: '#f44336', // Default error color (optional, change as needed)
@@ -39,7 +40,7 @@ const theme = createTheme({
             root: {
                 "& .MuiOutlinedInput-notchedOutline": {
                     borderWidth: 2, // Customize border width (default is usually 1px)
-                    borderColor: '#c6c6ec'
+                    borderColor: '#ffb3d9'
                 },
             },
         },
@@ -49,6 +50,9 @@ const theme = createTheme({
 
 function App() {
   const [currentCard, setCurrentCard] = useState('networking');
+  
+  const [transcript, setTranscript] = useState<string>('No transcript yet.');
+  const [analysis, setAnalysis] = useState<any>(null);
   
   //carousel implementation
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -72,27 +76,17 @@ function App() {
       prevCard === 'networking'?'pitching' :(prevCard === 'pitching'?'interviewing':'networking')
     )
   };
-
   const cards = [
-    { title: "networking", subtitle: "chat with pog professionals", image: 'networking.png' },
-    { title: "interviewing", subtitle: "embody the alpha talent", image: 'interviewing.png' },
-    { title: "pitching", subtitle: "sell your skibidi idea", image: 'pitching.png' },
+    { title: "networking", subtitle: "chat with pog professionals ~ write who you want to meet", image: 'networking.png' },
+    { title: "interviewing", subtitle: "embody the alpha talent ~ write the job you want", image: 'interviewing.png' },
+    { title: "pitching", subtitle: "sell your skibidi idea ~ write the prize you're going for", image: 'pitching.png' },
   ];
-
-  const agentNumbers = {
-    "networking": "",
-    "interviewing": "",
-    "pitching": "",
-  }
+  //end carousel
 
   return (
    <ThemeProvider theme={theme}>
-      
       <MainTitle/>
-      <Typography variant='h4'>{currentCard}</Typography>
-      
-
-      <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", color: "text.primary" }}>
             {/* Carousel Container */}
             <Box
                 sx={{
@@ -113,7 +107,7 @@ function App() {
                             transform: `translateX(-${currentIndex * 100}%)`,
                         }}
                     >
-                        <CallCard title={card.title} subtitle={card.subtitle} image={card.image}/>
+                        <CallCard title={card.title} subtitle={card.subtitle} image={card.image} editTranscript={setTranscript} editAnalysis={setAnalysis}/>
                     </Box>
                 ))}
             </Box>
@@ -127,8 +121,9 @@ function App() {
                     <ArrowCircleRight />
                 </IconButton>
             </Box>
-        </Box>
 
+            
+      </Box>
    </ThemeProvider>
   )
 }

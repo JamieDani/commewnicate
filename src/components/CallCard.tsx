@@ -7,12 +7,14 @@ interface CallCardProps {
     title: string;  // Title of the card
     subtitle: string;  // Content to display in the card
     image: string;
+    editTranscript: React.Dispatch<React.SetStateAction<string>>;
+    editAnalysis: React.Dispatch<React.SetStateAction<any>>;
   }
+
   
-  export const CallCard: React.FC<CallCardProps> = ({ title, subtitle, image }) => {
-    const [inputValue, setInputValue] = useState<string>('Google software engineer');
-    const [transcript, setTranscript] = useState<string>('No transcript yet.');
-    const [analysis, setAnalysis] = useState<any>(null);
+  
+  export const CallCard: React.FC<CallCardProps> = ({ title, subtitle, image, editTranscript, editAnalysis }) => {
+    const [inputValue, setInputValue] = useState<string>('Insert text here...');
     
     const handleChange = (event: any) => {
         // Step 3: Update the state with the new input value
@@ -20,14 +22,17 @@ interface CallCardProps {
     };
 
     async function handleCall(number: string, description: string, call_type: string) {
+        console.log("calling number...")
+        
         const phoneCallResponse = await callUser(number, description, call_type)
 
+        console.log(phoneCallResponse);
         console.log(phoneCallResponse.agent_id);
         console.log(phoneCallResponse.transcript);
         console.log(phoneCallResponse.call_analysis);
 
-        if (phoneCallResponse.transcript) { setTranscript(phoneCallResponse.transcript); }
-        if (phoneCallResponse.call_analysis?.custom_analysis_data) { setAnalysis(phoneCallResponse.call_analysis.custom_analysis_data); }
+        if (phoneCallResponse.transcript) { editTranscript(phoneCallResponse.transcript); }
+        if (phoneCallResponse.call_analysis?.custom_analysis_data) { editAnalysis(phoneCallResponse.call_analysis.custom_analysis_data); }
     }
 
     return (
@@ -43,12 +48,6 @@ interface CallCardProps {
             borderRadius: '30px',
             borderColor: 'text.primary',
             borderWidth: '3px',
-            transition: 'background-color 0.2s ease-in-out',
-            // '&:hover': {
-            //     backgroundColor: 'primary.light',
-            //     transition: 'background-color 0.2s ease-in-out',
-                
-            // }
           }}
         >
             <Typography variant='h4'>{title}</Typography>
@@ -69,7 +68,7 @@ interface CallCardProps {
                     value={inputValue}  // Step 4a: The value of the input is controlled by state
                     onChange={handleChange}
                 />
-                <Button variant='contained' startIcon={<Call/>} disableElevation onClick={() => handleCall('', inputValue, title)}>Call</Button>
+                <Button variant='contained' startIcon={<Call/>} disableElevation onClick={() => handleCall('[]', inputValue, title)}>Call</Button>
                 
             </Box>
         </Box>
