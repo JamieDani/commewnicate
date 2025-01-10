@@ -1,30 +1,23 @@
-# React + TypeScript + Vite
+# ComMEWnicate
+![ComMEWnicate Homepage](https://github.com/user-attachments/assets/ffc0c9a2-e510-4c81-b96b-229cac7b6d55)
+Watch the demo [here](https://youtu.be/JvRqJACeJ1A).
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Goal
+Many CS majors and Gen Z students are introverted. This tool can help ease them out of their comfort zone to practice and develop the necessary soft skills they need to advance their career - without the pressure of passing their interview, the stakes of making a good impression, their hackathon prize on the line, or any fear of judgement whatsoever.
 
-Currently, two official plugins are available:
+# What it does
+This platform provides an AI voice agent who will role-play as a hackathon judge, tech professional at a networking event, or your interviewer so you can practice your soft skills! The model's behavior is customizable to the user's situation via text input.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# How it's built
+- **React** front-end
+- **Retell AI API** for AI voice agent
+- **Procreate** for drawings
+- **MUI** for components
 
-## Expanding the ESLint configuration
+# Future goals
+- **Add feedback**: line by line analysis of tone, confidence, filler words
+- **Add predicted outcome**: for example, if they won the prize, passed the interview, or made a good impression
+- **Stats over time**: show progress and improvement over the long-term and gain achievements
+- **Study body language via a webcam**: more communication is done non-verbally and also important to practice
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
